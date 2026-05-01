@@ -4,6 +4,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch: #
 jobs:
   test:
     timeout-minutes: 60
@@ -25,3 +26,11 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    - name: Run Playwright tests
+      run: npx playwright test
+      env:
+        BASE_URL: ${{ secrets.BASE_URL }}
+        ACTIMO_EMAIL: ${{ secrets.ACTIMO_EMAIL }}
+        ACTIMO_PASSWORD: ${{ secrets.ACTIMO_PASSWORD }}
+        TEST_RECIPIENT_GROUP: ${{ secrets.TEST_RECIPIENT_GROUP }}
