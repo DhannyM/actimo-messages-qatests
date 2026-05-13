@@ -20,6 +20,7 @@ export class MessagesPage {
   readonly messageTitleInput: Locator;
 
   // Module Element Preview
+  readonly moduleContent: Locator;
   readonly textModulePreview: Locator;
   readonly buttonModulePreview: Locator;
   readonly insertStatus: Locator
@@ -72,6 +73,9 @@ export class MessagesPage {
     this.messageTitleInput = page
       .locator('ao-editable-label div')
       .first();
+
+    this.moduleContent = page
+      .locator('ao-card.ao-modal__wrapper')
 
     this.insertStatus = page
       .locator('div.ao-admin-header__save-state')
@@ -178,8 +182,7 @@ export class MessagesPage {
 
   async insertButtonModule(content:string): Promise<void>{
     await this.addButtonModuleButton.click()
-    const buttonModulePanel = this.page.locator('ao-card.ao-modal__wrapper');
-    await expect(buttonModulePanel).toBeVisible();
+    await expect(this.moduleContent).toBeVisible();
     await this.page.getByPlaceholder('Download this file').fill(content);
     await this.saveButton.click();
   }

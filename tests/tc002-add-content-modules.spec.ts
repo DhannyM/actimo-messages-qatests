@@ -42,7 +42,7 @@ test.describe('TC-002: Add content modules to a message', () => {
     await messagesPage.addButtonModuleButton.click();
 
     // The button module editor / config panel should appear
-    const buttonModulePanel = page.locator('ao-card.ao-modal__wrapper');
+    const buttonModulePanel = messagesPage.moduleContent
     await expect(buttonModulePanel).toBeVisible();
     await expect(messagesPage.insertStatus).toHaveText('saved')
 
