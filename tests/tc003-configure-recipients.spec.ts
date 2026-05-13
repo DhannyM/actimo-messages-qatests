@@ -25,7 +25,7 @@ test.describe('TC-003: Configure recipients and Publish message', () => {
 
     // Navigate to Publish tab
     await messagesPage.publishTab.click()
-    await messagesPage.recipientSearchInput.waitFor({ state: 'visible', timeout: 10_000 });
+    await messagesPage.recipientSearchInput.waitFor({ state: 'visible' });
   });
 
   test('should allow searching for and selecting a recipient group', async ({ page }) => {
@@ -37,14 +37,14 @@ test.describe('TC-003: Configure recipients and Publish message', () => {
     const dropdownOption = page
       .locator('[class*="ao-select-dropdown-item"]')
       .first();
-    await expect(dropdownOption).toBeVisible({ timeout: 8_000 });
+    await expect(dropdownOption).toBeVisible();
       
     // Select the first matching result
     await dropdownOption.click();
 
     // The selected recipient should appear as a tag / chip in the recipients area
     const recipientTag = messagesPage.recipientName
-    await expect(recipientTag).toBeVisible({ timeout: 5_000 });
+    await expect(recipientTag).toBeVisible();
     await expect(recipientTag).toContainText(testGroup)
 
     // publish
@@ -56,7 +56,7 @@ test.describe('TC-003: Configure recipients and Publish message', () => {
       // Confirm overlay appears
       await overlayPage.isVisible()
       await expect(page.getByText('No notifications')).toBeVisible()
-      await expect(messagesPage.confirmButton).toBeVisible({timeout: 10_000})
+      await expect(messagesPage.confirmButton).toBeVisible()
       await messagesPage.confirmButton.click()
       await expect(messagesPage.toastNotification).toContainText('Content has been queued to be published')
 

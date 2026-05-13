@@ -43,12 +43,12 @@ test.describe('TC-002: Add content modules to a message', () => {
 
     // The button module editor / config panel should appear
     const buttonModulePanel = page.locator('ao-card.ao-modal__wrapper');
-    await expect(buttonModulePanel).toBeVisible({ timeout: 8_000 });
-    await expect(messagesPage.insertStatus).toHaveText('saved',{ timeout: 8_000 })
+    await expect(buttonModulePanel).toBeVisible();
+    await expect(messagesPage.insertStatus).toHaveText('saved')
 
     // The page should contain two distinct module blocks
     const moduleBlocks = page.locator('ao-content-card.admin-content-card');
-    await expect(moduleBlocks).toHaveCount(2, { timeout: 5_000 });
+    await expect(moduleBlocks).toHaveCount(2);
 
     // Add button text then save
     await page.getByPlaceholder('Download this file').fill(buttonTitle);
@@ -56,7 +56,7 @@ test.describe('TC-002: Add content modules to a message', () => {
 
     // Verify button insterted is visible
     const insertButton = messagesPage.buttonModulePreview
-    await expect(insertButton).toBeVisible({timeout: 8_000})
+    await expect(insertButton).toBeVisible()
     await expect(insertButton).toHaveText(buttonTitle)
     await expect(messagesPage.insertStatus).toHaveText('saved')
   

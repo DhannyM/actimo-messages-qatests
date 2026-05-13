@@ -36,7 +36,7 @@ test.describe('TC-001: Create a new message', () => {
 
   });
 
-  // test('should not allow publishing a message with default title - BUG', async ({ page }) => {
+  // test('should not allow publishing a message with null title - BUG', async ({ page }) => {
   // await messagesPage.openCreateMessageForm();
 
   // // Clear the default title
