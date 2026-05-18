@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { MessagesPage } from '../pages/MessagesPage';
 import { authenticate, uniqueTitle } from '../utils/helpers';
-import { messageTitles, MessageTitle } from '../utils/testData';
+import { messageTitles } from '../utils/testData';
 
 /**
  * TC-001 – Create a new message with a title and text module
@@ -37,11 +37,11 @@ test.describe('TC-001: Create a new message', () => {
 
   });
 
- for (const testData of messageTitles) {
-    test(`should create message with "${testData.description}"`, async ({ page }) => {
+ for (const {title, description} of messageTitles) {
+    test(`should create message with "${description}"`, async ({ page }) => {
       await messagesPage.openCreateMessageForm();
-      await messagesPage.setMessageTitle(testData.title);
-      await expect(messagesPage.messageTitleInput).toContainText(testData.title);
+      await messagesPage.setMessageTitle(title);
+      await expect(messagesPage.messageTitleInput).toContainText(title);
     });
   }
 
