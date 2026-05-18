@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { MessagesPage } from '../pages/MessagesPage';
 import { authenticate, uniqueTitle } from '../utils/helpers';
+import { messageTitles, MessageTitle } from '../utils/testData';
 
 /**
  * TC-001 – Create a new message with a title and text module
@@ -36,6 +37,14 @@ test.describe('TC-001: Create a new message', () => {
 
   });
 
+ for (const testData of messageTitles) {
+    test(`should create message with "${testData.description}"`, async ({ page }) => {
+      await messagesPage.openCreateMessageForm();
+      await messagesPage.setMessageTitle(testData.title);
+      await expect(messagesPage.messageTitleInput).toContainText(testData.title);
+    });
+  }
+
   // test('should not allow publishing a message with null title - BUG', async ({ page }) => {
   // await messagesPage.openCreateMessageForm();
 
@@ -49,4 +58,5 @@ test.describe('TC-001: Create a new message', () => {
   // await expect(validationError).toBeVisible({ timeout: 5_000 });
   // })
 
+  // Data-driven test for various message title inputs
 });
